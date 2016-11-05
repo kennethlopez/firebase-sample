@@ -1,17 +1,18 @@
 package com.chipcerio.symphmonitor.welcomescreen;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 
 import com.chipcerio.symphmonitor.R;
+import com.chipcerio.symphmonitor.secondScreen.SecondScreenActivity;
 
-/**
- * Created by Jermaine on 05/11/2016.
- */
 public class WelcomeActivity extends AppCompatActivity implements WelcomeContract.View {
 
     public static final String EXTRA_NAME = "extra:name";
@@ -37,13 +38,23 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrac
 
     @Override
     public void setNameError(int resId) {
-        ((EditText) findViewById(R.id.welcome_editText)).setError(getString(resId));
+        Dialog dialog = new AlertDialog.Builder(this)
+                .setTitle("Error")
+                .setMessage(resId)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                })
+                .create();
+        dialog.show();
     }
 
     @Override
-    public void startNextActivity() {
-        //Intent intent = new Intent(this, NameOfActivity.class);
-        //intent.putExtra(EXTRA_NAME, getName());
-        //startActivity(intent);
+    public void startNextActivity(String name) {
+        Intent secondActivityIntent = new Intent(this, SecondScreenActivity.class);
+        secondActivityIntent.putExtra(EXTRA_NAME, name);
+        startActivity(secondActivityIntent);
     }
 }

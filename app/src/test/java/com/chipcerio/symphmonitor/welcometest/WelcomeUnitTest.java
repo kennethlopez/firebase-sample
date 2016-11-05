@@ -14,9 +14,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-/**
- * Created by Jermaine on 05/11/2016.
- */
 @RunWith(MockitoJUnitRunner.class)
 public class WelcomeUnitTest {
 
@@ -44,6 +41,6 @@ public class WelcomeUnitTest {
         when(mView.getName()).thenReturn("Jermaine");
         mPresenter.onProceedClick();
 
-        verify(mView).startNextActivity();
+        verify(mView).startNextActivity(mView.getName());
     }
 }

@@ -6,10 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.chipcerio.symphmonitor.R;
 
-/**
- * Created by kennethlopez on 05/11/2016.
- */
-
 public class SecondScreenActivity extends AppCompatActivity {
 
     @Override
